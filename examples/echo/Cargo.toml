@@ -1,0 +1,23 @@
+[package]
+name = "echo"
+version = "0.0.0"
+authors = ["Zhe Wang <0x1998@gmail.com>"]
+build = "build.rs"
+
+[build-dependencies]
+capnpc = "0.6.1"
+
+[[bin]]
+name = "echo_server"
+path = "echo_server.rs"
+
+[[bin]]
+name = "echo_client"
+path = "echo_client.rs"
+
+[dependencies]
+capnp = "0.6.2"
+rotor = "0.6.3"
+
+[dependencies.rotor-capnp]
+path = "../../"
