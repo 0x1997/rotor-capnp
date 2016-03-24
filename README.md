@@ -2,6 +2,8 @@
 
 mio based async stream for Cap'n Proto messages.
 
+[![Build Status](https://travis-ci.org/0x1997/rotor-capnp.svg?branch=master)](https://travis-ci.org/0x1997/rotor-capnp)
+
 ## TODO
 - [ ] Packed serialization
 - [ ] UDP?
