@@ -22,6 +22,7 @@ enum CapnpState {
     Sleeping,
 }
 
+/// Adaptor for receiving and sending Cap'n Proto messages over a stream connection.
 pub struct Capnp<E: Endpoint> {
     fsm: E,
     state: CapnpState,

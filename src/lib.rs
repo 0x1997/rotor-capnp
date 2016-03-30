@@ -1,3 +1,5 @@
+//! mio based async stream for Cap'n Proto messages
+//!
 extern crate byteorder;
 extern crate capnp;
 extern crate rotor;
@@ -17,4 +19,5 @@ pub use protocol::{Action, ConnectionState, Endpoint};
 pub use serialization::{MessageReader, MessageBuilder, MessageWriter};
 pub use stream::Capnp;
 
+/// State machine for the Cap'n Proto message stream.
 pub type CapnpStream<E> = Stream<Capnp<E>>;

@@ -1,3 +1,5 @@
+// See https://capnproto.org/encoding.html#serialization-over-a-stream for
+// the specification.
 use std::io::{Cursor, Write};
 
 use byteorder::{ByteOrder, LittleEndian, WriteBytesExt};
@@ -8,8 +10,13 @@ use rotor_stream::Buf;
 pub use capnp::{Error, Word};
 pub use capnp::message::{Allocator as MessageAllocator, ReaderOptions};
 
+/// Cap'n Proto message reader.
 pub type MessageReader = Reader<OwnedSegments>;
+
+/// Cap'n Proto message builder.
 pub type MessageBuilder<A> = Builder<A>;
+
+/// Cap'n Proto message serializer.
 pub struct MessageWriter<'a>(pub &'a mut Buf);
 
 pub fn read_segment_count(buf: &mut Buf) -> Result<usize> {
@@ -79,6 +86,7 @@ impl ReaderSegments for OwnedSegments {
 }
 
 impl<'a> MessageWriter<'a> {
+    /// Serialize and write the message to the connection buffer.
     pub fn write<A: MessageAllocator>(&mut self, message: &MessageBuilder<A>) {
         let segments = message.get_segments_for_output();
         self.0.write_u32::<LittleEndian>(segments.len() as u32 - 1).unwrap();

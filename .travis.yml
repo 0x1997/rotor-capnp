@@ -7,4 +7,16 @@ matrix:
   allow_failures:
     - rust: nightly
 script:
-  - cargo build -v
+  - cargo build
+  - 'for ex in examples/*; do cd "$ex" && cargo build; done'
+env:
+  secure: "NvETvRKI/0ztBBRrj2hYrFndJxFGjHuqCnZVgNPNTnKA/xijMKH1OeV04U3CdbWI8bk1ojQBBghrxGDt99FIDls14tDuXImJ0OHlJkjzVXJT+MWBoSCpesXTGJKKaAvVqUDQAfB7Suo+K68B1Z5TClL61EccicZITKRQjFPMSSoE6IQWfGEj7eLgemV1FJZmvIo8Oy19R1nKWvJh/fzl7g/O6hT9zvR07RM5qNs17JkRkI5590DPIevGGxvOJNiqc0skTaIDGS2cu7yx1U67o4002WJgwjasWzgoKpQgDE47KGCxeuqkhudjW0ENHj9LV+CNhrZQ/7ZFhDXFnuV6mi0AI210t+bWnMOiayggLp5D5mpKSBkxVVS9fenbG6uHlMdoMOdC4FOPSw+57OxOoCbv/7IoBI/47N1dCsOHPmNqtxoKg1PxF1PJ4GGgZo9GUy0bBUTE1cHmCZGNu8E4bg/ymvJ5DB5tF+YVRXsUDl93PbF0D8QFEMxueCtT7LN9CCWPw7Clq66ppqN34FYJc/0ceHKx1EWVMCpuQKSTq52YyxJil+OIbw1dTP7DZyFPnY8xWTghAmSR6vAcQDv7hFQNUUnFeq0uyUSEYDKSeLehmg2qkrlqrUBfwXDzM/eIob1zo06R0egjFKbHxDslrHdR2vPIrD2wuMlzVO4oc10="
+after_success: |
+  [ $TRAVIS_RUST_VERSION = stable ] &&
+  [ $TRAVIS_BRANCH = master ] &&
+  [ $TRAVIS_PULL_REQUEST = false ] &&
+  cargo doc --no-deps &&
+  echo "<meta http-equiv=refresh content=0;url=`echo $TRAVIS_REPO_SLUG | cut -d '/' -f 2 | tr '-' '_'`/index.html>" > target/doc/index.html &&
+  pip install ghp-import --user &&
+  ~/.local/bin/ghp-import -n target/doc &&
+  git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages

@@ -102,7 +102,7 @@ impl Endpoint for EchoServer {
         unreachable!()
     }
 
-    /// Connection will be closed after this
+    // Connection will be closed after this
     fn exception(self, err: Error, _scope: &mut Scope<Self::Context>) {
         println!("[server] {}, closing connection", err);
     }
