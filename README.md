@@ -2,7 +2,9 @@
 
 mio based async stream for Cap'n Proto messages.
 
+[![crates.io](http://meritbadge.herokuapp.com/rotor-capnp)](https://crates.io/crates/rotor-capnp)
 [![Build Status](https://travis-ci.org/0x1997/rotor-capnp.svg?branch=master)](https://travis-ci.org/0x1997/rotor-capnp)
+[API Documentation](http://0x1997.github.io/rotor-capnp)
 
 ## TODO
 
