@@ -34,7 +34,7 @@ pub enum ConnectionState {
 /// Currently this is used by both client side and server side of the connection.
 /// Client specific abstractions might be added in the future.
 pub trait Endpoint: Sized {
-    /// Context shared between transitions of the state machine. 
+    /// Context shared between transitions of the state machine.
     type Context;
     /// Type of the underlying socket.
     type Socket: StreamSocket;
@@ -72,7 +72,7 @@ pub trait Endpoint: Sized {
 
     /// Timeout for reading a message.
     fn recv_timeout(&self, scope: &mut Scope<Self::Context>) -> Duration;
-    
+
     /// Timeout for sending a message.
     fn send_timeout(&self, scope: &mut Scope<Self::Context>) -> Duration;
 

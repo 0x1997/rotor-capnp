@@ -1,7 +1,7 @@
 [package]
 authors = ["Zhe Wang <0x1998@gmail.com>"]
 name = "rotor-capnp"
-version = "0.1.0"
+version = "0.1.1"
 license = "MIT/Apache-2.0"
 keywords = ["rotor", "capnp"]
 description = "mio based async stream for Cap'n Proto messages"
@@ -10,8 +10,8 @@ homepage = "https://github.com/0x1997/rotor-capnp"
 repository = "https://github.com/0x1997/rotor-capnp.git"
 
 [dependencies]
-byteorder = "0.5.0"
+byteorder = "0.5.1"
 capnp = "0.6.2"
 quick-error = "1.0.0"
 rotor = "0.6.3"
-rotor-stream = "0.5.1"
+rotor-stream = "0.6.2"

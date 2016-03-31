@@ -209,11 +209,18 @@ impl<E: Endpoint> Protocol for Capnp<E> {
                 }
                 Intent::done()
             }
-            Exception::LimitReached => unreachable!(),
             _ => {
                 self.fsm.exception(Error::Stream(reason), scope);
                 Intent::done()
             }
         }
+    }
+
+    fn fatal(self,
+             reason: Exception,
+             scope: &mut Scope<Self::Context>)
+             -> Option<Box<::std::error::Error>> {
+        self.fsm.exception(Error::Stream(reason), scope);
+        None
     }
 }

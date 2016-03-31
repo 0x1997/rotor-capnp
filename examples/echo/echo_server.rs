@@ -114,7 +114,7 @@ fn main() {
     let socket = TcpListener::bind(&"127.0.0.1:3055".parse().unwrap()).unwrap();
 
     loop_inst.add_machine_with(|scope| {
-                 Accept::<CapnpStream<EchoServer>, TcpListener>::new(socket, scope)
+                 Accept::<CapnpStream<EchoServer>, TcpListener>::new(socket, (), scope)
              })
              .unwrap();
     loop_inst.run().unwrap();
